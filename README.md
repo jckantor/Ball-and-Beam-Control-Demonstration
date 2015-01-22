@@ -1,11 +1,12 @@
 Ball and Beam Control Demonstration
-===================================
+==================================
+The *Ball and Beam Control Demonstration* is an interactive demonstration of feedback control for a ball and beam system. It was created for the purpose of demonstrating proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001 in Matlab, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.
 
-The Ball & Beam Control Demonstration is an interactive demonstration of feedback control of a ball and beam system. It was created for the purpose of demonstrating proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001 in Matlab, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.
+## Operation
 
-These notes describe basic concepts incorporated in the demo and possible homework exercises.
+### Installation
 
-### Operation
+The demonstration is contained in a single Matlab file `ballbeam.m`. 
 
 The `ballbeam.m` file is a function that can be run with no arguments. Start the demo by entering `ballbeam` at the Matlab command prompt.
 
@@ -32,14 +33,12 @@ Simulation data is stored in a file |ballbeam.mat| after each run. The data can 
     xlabel('Time (Sec.)');
 
 ## Dynamics
-%
-% The position of the ball is governed by a second order differential
-% equation of the form
-%
-% $$ \frac{d^2x}{dt^2} = K_{beam} u$$
-% 
-% *Exercise*: Design and perform a simulation experiment to
-% estimate the parameter $K_{beam}$.
+
+The position of the ball is governed by a second order differential equation of the form
+
+$$ \frac{d^2x}{dt^2} = K_{beam} u$$
+
+1. Exercise: Design and perform a simulation experiment to estimate the parameter $K_{beam}$.
 
 ## Proportional Control
 
