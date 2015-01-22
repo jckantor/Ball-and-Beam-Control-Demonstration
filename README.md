@@ -20,16 +20,16 @@ The demo starts up in manual mode. The vertical slider moves the end of the beam
 
 Simulation data is stored in a file |ballbeam.mat| after each run. The data can be loaded and plotted as follows:
 
-load ballbeam
-clf
-subplot(211);
-plot(tdata,xdata,'b',tdata,xspdata,'r');
-legend('Ball Position','Setpoint','Location','NW');
-xlabel('Time (Sec.)');
-subplot(212);
-plot(tdata,udata);
-legend('Beam Position','Location','NW');
-xlabel('Time (Sec.)');
+    load ballbeam
+    clf
+    subplot(211);
+    plot(tdata,xdata,'b',tdata,xspdata,'r');
+    legend('Ball Position','Setpoint','Location','NW');
+    xlabel('Time (Sec.)');
+    subplot(212);
+    plot(tdata,udata);
+    legend('Beam Position','Location','NW');
+    xlabel('Time (Sec.)');
 
 ## Dynamics
 %
