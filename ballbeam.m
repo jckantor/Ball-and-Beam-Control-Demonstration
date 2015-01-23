@@ -15,12 +15,9 @@ function ballbeam(action)
 % interface code was shamelessly ripped out of the standard Matlab demos.
 
 % Jeffrey Kantor
-% Version 1.0
-% March 24, 2001
-%
-%
-% Updated for Matlab 2010b and README.m
-% January 20, 2011
+% Version 1.0 March 24, 2001
+% Updated for Matlab 2010b January 20, 2011
+% Github repository created January 22, 2015
 
     if nargin < 1
         action = 'initialize';
@@ -274,14 +271,12 @@ function ballbeam(action)
         xball = ballradius*sin(a);
         yball = ballradius*(1+cos(a));
         ballHndl = patch(xball+x,yball,1);
-        set(ballHndl,'EraseMode','xor');
 
         % Create Beam
 
         xbeam = beamlength*[0 1 1 0]';
         ybeam = beamwidth*[0 0 -1 -1]';
         beamHndl = patch(xbeam,ybeam,2);
-        set(beamHndl,'EraseMode','xor');
 
         % Create Fulcrum
 
