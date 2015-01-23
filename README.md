@@ -1,6 +1,14 @@
 Ball and Beam Control Demonstration
-==================================
-The *Ball and Beam Control Demonstration* is an interactive demonstration of feedback control for a ball and beam system. It was created for the purpose of demonstrating proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001 in Matlab, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.
+===================================
+
+<head>
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+*Ball and Beam Control Demonstration* is an interactive demonstration of feedback control for a ball and beam system. It was written in Matlab to demonstrate proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.
 
 ## Operation
 
