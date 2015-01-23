@@ -470,13 +470,10 @@ function ballbeam(action)
         set(ballHndl,'Xdata',x + xball, 'Ydata',yball);
         set(markerHndl,'Xdata',xsp + xmarker,'Ydata',ymarker);
 
-    case{'mode'}
-
+    case{'mode'}  % Get control mode, adjust menu visibilities
         mode = get(modeHndl,'Value');
 
-        if mode == 1,
-
-            % Manual Mode
+        if mode == 1,   % Manual Mode
             set(manualHndl,'Visible','on');
             set(gainlblHndl,'Visible','off');
             set(gaintxtHndl,'Visible','off');
@@ -487,9 +484,8 @@ function ballbeam(action)
 
             set(manualHndl,'Value',u);
 
-        elseif mode == 2,
-
-            % Proportional Mode
+        elseif mode == 2,  % Proportional Mode
+            
             set(manualHndl,'Visible','off');
             set(gainlblHndl,'Visible','on');
             set(gaintxtHndl,'Visible','on');
@@ -498,9 +494,8 @@ function ballbeam(action)
             set(dervtxtHndl,'Visible','off');
             set(dervHndl,'Visible','off');
 
-        elseif mode == 3,
-
-            % PD Mode
+        elseif mode == 3,  % PD Mode
+            
             set(manualHndl,'Visible','off');
             set(gainlblHndl,'Visible','on');
             set(gaintxtHndl,'Visible','on');
@@ -512,12 +507,7 @@ function ballbeam(action)
 
         end
 
-    case{'control'}
-
-        % Get the control parameters from the sliders, do them
-        % both with the same call because I'm too lazy to write
-        % separate cases.
-
+    case{'control'}  % Get the control parameters from the sliders
         Kp = get(gainHndl,'Value');
         Td = get(dervHndl,'Value');
         set(gaintxtHndl,'String',num2str(Kp));
@@ -525,25 +515,15 @@ function ballbeam(action)
         Ad = Td/(Td+N*dt);
         Bd = Kp*Td*N/(Td+N*dt);
 
-    case{'info'}
-
-        % Display help file
-
+    case{'info'}  % Display help file
         helpwin(mfilename);
 
-    case{'stop'}
-
-        % Set stop flag. This is caught in run, and the 
-        % button status's reset there on exit from the main
-        % loop
-
+    case{'stop'}  % Set stop flag. Ends running status.
         done = 1;
 
-    otherwise
-
-        % Should never get here
-
+    otherwise     % Should never get here
         disp('Unknown action');
+        
     end
 
 end
