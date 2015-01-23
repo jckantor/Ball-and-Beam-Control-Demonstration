@@ -1,11 +1,35 @@
 Ball and Beam Control Demonstration
 ===================================
 
-<head>
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+
+<script type="text/x-mathjax-config"> 
+MathJax.Hub.Config({ 
+jax: ["input/TeX","output/HTML-CSS"], 
+extensions: ["tex2jax.js"], 
+tex2jax: { 
+inlineMath: [ ['$','$'], ["\\(","\\)"] ], 
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ], 
+processEscapes: true 
+}, 
+}); 
+</script> 
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+}
+});
+
+MathJax.Hub.Queue(function() {
+var all = MathJax.Hub.getAllJax(), i;
+for(i=0; i < all.length; i += 1) {
+all[i].SourceElement().parentNode.className += ' has-jax';
+}
+});
 </script>
-</head>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 
 
 *Ball and Beam Control Demonstration* is an interactive demonstration of feedback control for a ball and beam system. It was written in Matlab to demonstrate proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.
