@@ -37,33 +37,7 @@ Simulation data is stored in a file |ballbeam.mat| after each run. The data can 
     legend('Beam Position','Location','NW');
     xlabel('Time (Sec.)');
 
+
 ## Dynamics
-
-The position of the ball is governed by a second order differential equation of the form
-
-$$ \frac{d^2x}{dt^2} = K_{beam} u$$
-
-1. Exercise: Design and perform a simulation experiment to estimate the parameter $K_{beam}$.
-
-## Proportional Control
-
-As the name suggests, under proportional control the beam position is set in proportion to the difference between the ball position and desired setpoint.
-
-\\[ u = K_p(x_{sp}-x) \\]
-
-Under the |Mode| menu, select proportional control (P) and use the slider controls to adjust $K_p$. Adjust the setpoint, then push |Run|. You can adjust the setpoint and control gain during the course of a |Run|.  
-
-1. Exercise: What type of behavior do you observe?  Substituting the the expression for the control action into the dynamical model leads to a second order differential equation.  What is the solution to that equation?
-2. Exercise*: Use the results of the above exercise to estimate the value of $K_{beam}$.
-
-
-## Proportional-Derivative Control
-
-Proportional control alone leads to an oscillatory response. Proportional-Derivative (PD) control adds additional damping through a derivative term in the control law
-
-$$ u = K_p(x_{sp}-x) - K_p\tau_d\frac{dx}{dt} $$
-
-where $\tau_d$ is the derivative 'time-constant'. Under the `Mode` menu, select proportional-derivative control (PD) and adjust the parameters with the associated sliders. 
-
-1. Exercise: Set $K_p = 0.1$. How large does $\tau_d$ need to be to completely suppress overshoot of the setpoint? 
-2. Exercise: Explore the response of the controlled system to a step change in the setpoint. Would you prefer an underdamped, critcally damped, or overdamped control system? Explain.
+ 
+ (http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/Dynamics.ipynb)
