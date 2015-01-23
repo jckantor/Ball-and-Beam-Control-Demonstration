@@ -77,6 +77,13 @@ function ballbeam(action)
         dterm = 0;                  % Derivative term
         Ad = Td/(Td+N*dt);          % Derivative filter constant
         Bd = Kp*Td*N/(Td+N*dt);     % Derivative gain
+        
+        % Initialize Data stores
+        
+        xdata = x;
+        tdata = t;
+        udata = u;
+        xspdata = xsp;
 
         % Create figure
 
@@ -97,7 +104,7 @@ function ballbeam(action)
 
         plotAxes = axes(...
             'Units','normalized',...
-            'Position',[0.05 0.65 0.75 0.30],...
+            'Position',[0.08 0.65 0.70 0.30],...
             'Visible','off');
 
         % Information for all buttons
@@ -435,6 +442,14 @@ function ballbeam(action)
             'Ydata',sin(u)*(xsp + xmarker) + cos(u)*ymarker);
 
     case{'reset'}
+        
+        set(plotAxes,'Visible','off');
+        if ishandle(plotHndl)
+            set(plotHndl,'Visible','off');
+        end
+        if ishandle(legHndl)
+            set(legHndl,'Visible','off');
+        end
 
         % Reset the ball to the middle of the beam, and level the
         % beam.
