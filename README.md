@@ -52,7 +52,7 @@ $$ \frac{d^2x}{dt^2} = K_{beam} u$$
 
 As the name suggests, under proportional control the beam position is set in proportion to the difference between the ball position and desired setpoint.
 
-$$ u = K_p(x_{sp}-x) $$
+\\[ u = K_p(x_{sp}-x) \\]
 
 Under the |Mode| menu, select proportional control (P) and use the slider controls to adjust $K_p$. Adjust the setpoint, then push |Run|. You can adjust the setpoint and control gain during the course of a |Run|.  
 
