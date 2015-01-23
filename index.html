@@ -85,41 +85,7 @@ xlabel('Time (Sec.)');
 <h2>
 <a id="dynamics" class="anchor" href="#dynamics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamics</h2>
 
-<p>The position of the ball is governed by a second order differential equation of the form</p>
-
-<p>$$ \frac{d^2x}{dt^2} = K_{beam} u$$</p>
-
-<ol>
-<li>Exercise: Design and perform a simulation experiment to estimate the parameter $K_{beam}$.</li>
-</ol>
-
-<h2>
-<a id="proportional-control" class="anchor" href="#proportional-control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proportional Control</h2>
-
-<p>As the name suggests, under proportional control the beam position is set in proportion to the difference between the ball position and desired setpoint.</p>
-
-<p>\[ u = K_p(x_{sp}-x) \]</p>
-
-<p>Under the |Mode| menu, select proportional control (P) and use the slider controls to adjust $K_p$. Adjust the setpoint, then push |Run|. You can adjust the setpoint and control gain during the course of a |Run|.  </p>
-
-<ol>
-<li>Exercise: What type of behavior do you observe?  Substituting the the expression for the control action into the dynamical model leads to a second order differential equation.  What is the solution to that equation?</li>
-<li>Exercise*: Use the results of the above exercise to estimate the value of $K_{beam}$.</li>
-</ol>
-
-<h2>
-<a id="proportional-derivative-control" class="anchor" href="#proportional-derivative-control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proportional-Derivative Control</h2>
-
-<p>Proportional control alone leads to an oscillatory response. Proportional-Derivative (PD) control adds additional damping through a derivative term in the control law</p>
-
-<p>$$ u = K_p(x_{sp}-x) - K_p\tau_d\frac{dx}{dt} $$</p>
-
-<p>where $\tau_d$ is the derivative 'time-constant'. Under the <code>Mode</code> menu, select proportional-derivative control (PD) and adjust the parameters with the associated sliders. </p>
-
-<ol>
-<li>Exercise: Set $K_p = 0.1$. How large does $\tau_d$ need to be to completely suppress overshoot of the setpoint? </li>
-<li>Exercise: Explore the response of the controlled system to a step change in the setpoint. Would you prefer an underdamped, critcally damped, or overdamped control system? Explain.</li>
-</ol>
+<p>(<a href="http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/Dynamics.ipynb">http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/Dynamics.ipynb</a>)</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/jckantor">jckantor</a></p>
