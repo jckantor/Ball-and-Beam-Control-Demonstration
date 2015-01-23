@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ball-and-beam-control-demonstration by jckantor</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Ball-and-beam-control-demonstration</h1>
+        <p>Interactive demonstration of feedback control for a ball and beam system.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/jckantor/Ball-and-Beam-Control-Demonstration" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/jckantor/Ball-and-Beam-Control-Demonstration/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/jckantor/Ball-and-Beam-Control-Demonstration/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a id="ball-and-beam-control-demonstration" class="anchor" href="#ball-and-beam-control-demonstration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ball and Beam Control Demonstration</h1>
+
+<p>The <em>Ball and Beam Control Demonstration</em> is an interactive demonstration of feedback control for a ball and beam system. It was created for the purpose of demonstrating proportional and proportional-derivative control in the classroom and for homework exercises. It was originally written in 2001 in Matlab, and revised in 2011 for the then-current version of Matlab. The github repository was created in 2015.</p>
+
+<h2>
+<a id="operation" class="anchor" href="#operation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operation</h2>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>The demonstration is contained in a single Matlab file <code>ballbeam.m</code>. </p>
+
+<p>The <code>ballbeam.m</code> file is a function that can be run with no arguments. Start the demo by entering <code>ballbeam</code> at the Matlab command prompt.</p>
+
+<h3>
+<a id="user-interaction" class="anchor" href="#user-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Interaction</h3>
+
+<p>The demo starts up in manual mode. The vertical slider moves the end of the beam up and down. The bottom slider adjusts the setpoint indicated by the red marker. Push the <code>Run</code> button to start the simulation. The ball will roll back and forth on the beam as you move the beam position up and down. The simulation is stopped by pushing the |Stop| button or when the ball rolls off either end of the beam. A summary of the simulation results is shown in the plot.</p>
+
+<ol>
+<li>Exercise: Move the setpoint to a new place, press <code>Run</code>, and manipulate the beam position to settle the ball over the new setpoint.</li>
+</ol>
+
+<h3>
+<a id="plotting-simulation-data" class="anchor" href="#plotting-simulation-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plotting Simulation Data</h3>
+
+<p>Simulation data is stored in a file |ballbeam.mat| after each run. The data can be loaded and plotted as follows:</p>
+
+<pre><code>load ballbeam
+clf
+subplot(211);
+plot(tdata,xdata,'b',tdata,xspdata,'r');
+legend('Ball Position','Setpoint','Location','NW');
+xlabel('Time (Sec.)');
+subplot(212);
+plot(tdata,udata);
+legend('Beam Position','Location','NW');
+xlabel('Time (Sec.)');
+</code></pre>
+
+<h2>
+<a id="dynamics" class="anchor" href="#dynamics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamics</h2>
+
+<p>The position of the ball is governed by a second order differential equation of the form</p>
+
+<p>$$ \frac{d^2x}{dt^2} = K_{beam} u$$</p>
+
+<ol>
+<li>Exercise: Design and perform a simulation experiment to estimate the parameter $K_{beam}$.</li>
+</ol>
+
+<h2>
+<a id="proportional-control" class="anchor" href="#proportional-control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proportional Control</h2>
+
+<p>As the name suggests, under proportional control the beam position is set in proportion to the difference between the ball position and desired setpoint.</p>
+
+<p>$$ u = K_p(x_{sp}-x) $$</p>
+
+<p>Under the |Mode| menu, select proportional control (P) and use the slider controls to adjust $K_p$. Adjust the setpoint, then push |Run|. You can adjust the setpoint and control gain during the course of a |Run|.  </p>
+
+<ol>
+<li>Exercise: What type of behavior do you observe?  Substituting the the expression for the control action into the dynamical model leads to a second order differential equation.  What is the solution to that equation?</li>
+<li>Exercise*: Use the results of the above exercise to estimate the value of $K_{beam}$.</li>
+</ol>
+
+<h2>
+<a id="proportional-derivative-control" class="anchor" href="#proportional-derivative-control" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proportional-Derivative Control</h2>
+
+<p>Proportional control alone leads to an oscillatory response. Proportional-Derivative (PD) control adds additional damping through a derivative term in the control law</p>
+
+<p>$$ u = K_p(x_{sp}-x) - K_p\tau_d\frac{dx}{dt} $$</p>
+
+<p>where $\tau_d$ is the derivative 'time-constant'. Under the <code>Mode</code> menu, select proportional-derivative control (PD) and adjust the parameters with the associated sliders. </p>
+
+<ol>
+<li>Exercise: Set $K_p = 0.1$. How large does $\tau_d$ need to be to completely suppress overshoot of the setpoint? </li>
+<li>Exercise: Explore the response of the controlled system to a step change in the setpoint. Would you prefer an underdamped, critcally damped, or overdamped control system? Explain.</li>
+</ol>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/jckantor">jckantor</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
