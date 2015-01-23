@@ -280,8 +280,8 @@ function ballbeam(action)
 
         % Create Fulcrum
 
-        xpivot = [0 1 -1]';
-        ypivot = [0 -5 -5]' - beamwidth;
+        xpivot = [0 1 -1 0]';
+        ypivot = [-beamwidth -5 -5 -beamwidth]';
         patch(xpivot,ypivot,3);
 
         % Create Setpoint Marker
