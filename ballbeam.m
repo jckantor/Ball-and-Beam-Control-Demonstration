@@ -1,14 +1,14 @@
 function ballbeam(action)
 
-% BALLBEAM demonsrates Proportional (P) and Proportional-Derivative (PD)
-% control for a ball and beam demonstration experiment. Run by calling with
-% no arguments.
+% BALLBEAM in an interactive Proportional (P) and Proportional-Derivative
+% (PD) control for a ball and beam demonstration experiment. Start it up by
+% entering 'ballbeam' at the command line with no arguments.
 %
-% P and PD controllers are implemented which manipulates the beam angle in
-% response to the position of the ball on the beam. The setpoint is
-% indicated by a red marker and adjusted using the slider at the bottom of
-% the figure. The control gain, Kp, and the derivative time constant, Td,
-% are adjusted by sliders located in the right hand control panel.
+% P and PD controller manipulate the beam angle in response to the position
+% of the ball on the beam. The setpoint is indicated by a red marker and
+% adjusted using the slider at the bottom of the figure. The control gain,
+% Kp, and the derivative time constant, Td, are adjusted by sliders located
+% in the right hand control panel.
 
 % This demo has been tested on Matlab 5.3 and Matlab 6.0. Some of the user
 % interface code was shamelessly ripped out of the standard Matlab demos.
@@ -87,19 +87,19 @@ function ballbeam(action)
         % Create figure
 
         figure( ...
+            'Menubar','None',...
             'Name','Ball & Beam Demo', ...
             'NumberTitle','off', ...
-            'BackingStore','off');
+            'BackingStore','off',...
+            'CloseRequestFcn','ballbeam(''close'')');
 
-        % Create axes to hold ball & beam animation
+        % Create axes to hold ball & beam animation and plot
 
         bbAxes = axes(...
             'Units','normalized', ...
             'Position',[0.02 0.02 0.75 0.70],...
             'Visible','off',...
             'NextPlot','add');
-
-        % Create plotting axes near the top of the window
 
         plotAxes = axes(...
             'Units','normalized',...
@@ -136,23 +136,10 @@ function ballbeam(action)
           'String','Run', ...
           'Interruptible','on', ...
           'Callback','ballbeam(''run'');');
-
-        %====================================
-        % RESET button
-        btnNumber=2;
-        yPos=0.90-(btnNumber-1)*(btnHt+spacing);
-
-        resetHndl=uicontrol( ...
-          'Style','pushbutton', ...
-          'Units','normalized', ...
-          'Position',[xPos yPos-spacing btnWid btnHt], ...
-          'String','Reset', ...
-          'Interruptible','on', ...
-          'Callback','ballbeam(''reset'');');
-
+      
         %====================================
         % The STOP button
-        btnNumber=3;
+        btnNumber=2;
         yPos=0.90-(btnNumber-1)*(btnHt+spacing);
 
         stopHndl=uicontrol( ...
@@ -162,6 +149,19 @@ function ballbeam(action)
             'Enable','off', ...
             'String','Stop', ...
             'Callback','ballbeam(''stop'');');
+
+        %====================================
+        % RESET button
+        btnNumber=3;
+        yPos=0.90-(btnNumber-1)*(btnHt+spacing);
+
+        resetHndl=uicontrol( ...
+          'Style','pushbutton', ...
+          'Units','normalized', ...
+          'Position',[xPos yPos-spacing btnWid btnHt], ...
+          'String','Reset', ...
+          'Interruptible','on', ...
+          'Callback','ballbeam(''reset'');');
 
         %====================================
         % The MODE popup button
@@ -250,13 +250,13 @@ function ballbeam(action)
         end
 
        %====================================
-       % The INFO button
+       % The HELP button
 
         infoHndl=uicontrol( ...
             'Style','push', ...
             'Units','normalized', ...
             'Position',[xPos 0.16 btnWid btnHt], ...
-            'String','Info', ...
+            'String','Help', ...
             'Callback','ballbeam(''info'')');
 
         %====================================
@@ -266,31 +266,30 @@ function ballbeam(action)
             'Style','push', ...
             'Units','normalized', ...
             'Position',[xPos 0.05 btnWid btnHt], ...
-            'String','Close', ...
-            'Callback','close(gcf)');
+            'String','Close & Plot', ...
+            'Callback','ballbeam(''close'')');
+        
+        % Initialize animation axes
 
         axes(bbAxes);
 
         % Create Ball, keep handle
-
         a = 2*pi*(0:.05:.95)';
         xball = ballradius*sin(a);
         yball = ballradius*(1+cos(a));
         ballHndl = patch(xball+x,yball,1);
 
         % Create Beam
-
         xbeam = beamlength*[0 1 1 0]';
         ybeam = beamwidth*[0 0 -1 -1]';
         beamHndl = patch(xbeam,ybeam,2);
 
         % Create Fulcrum
-
         xpivot = [0 1 -1 0]';
         ypivot = [-beamwidth -5 -5 -beamwidth]';
         patch(xpivot,ypivot,3);
 
-        % Create Setpoint Marker
+        % Create Setpoint Marker   
         xmarker = 3*beamwidth*[0 1 -1]';
         ymarker = 3*beamwidth*[0 -1 -1]'-beamwidth;
         markerHndl = patch(xmarker + xsp,ymarker,'r');
@@ -298,7 +297,7 @@ function ballbeam(action)
         % Draw
 
         axis equal
-        axis([-2, beamlength+ballradius+1, -5, 5 + ballradius]);
+        axis([-1-2*ballradius, beamlength+2*ballradius, -5, 5 + ballradius]);
 
         % Create setpoint slider
 
@@ -356,11 +355,11 @@ function ballbeam(action)
                 dterm = Ad*dterm + Bd*(x-xlast);
                 u = pterm + dterm;
             end
-            xlast = x;
             u = max(min(u,umax),umin);
 
-            % Compute next ball position
-
+            % Update velocity and position
+            
+            xlast = x;
             v = v - g*u*dt;
             x = x + v*dt;
             t = t + dt;
@@ -388,17 +387,12 @@ function ballbeam(action)
         end
         
         if x < xmin
-            x = xmin - 1 - ballradius;
-            set(ballHndl,'Xdata',x + xball,'Ydata',yball-5);
+            x = xmin;
+            set(ballHndl,'Xdata',x - 1 - ballradius + xball,'Ydata',yball-5);
+        elseif x > xmax
+            x = xmax;
+            set(ballHndl,'Xdata',x + ballradius + xball,'Ydata',yball-5);
         end
-        if x > xmax
-            x = xmax + ballradius;
-            set(ballHndl,'Xdata',x + xball,'Ydata',yball-5);
-        end
-        
-        % Save data to .mat file for subsequent analysis
-        
-        save ballbeam tdata udata xdata xspdata
 
         % Update Plot
 
@@ -407,17 +401,21 @@ function ballbeam(action)
         axis([min(tdata),max(tdata),xmin,xmax]);
         xlabel('Time');
         ylabel('Beam Position');
-        legHndl = legend(['Ball Position';...
-                'Setpoint     '],0);
+        legHndl = legend(...
+            'Ball Position',...
+            'Setpoint',...
+            'Location','NorthWest');
         set(plotAxes,'Visible','on');
-
         set([runHndl,resetHndl,closeHndl,infoHndl],'Enable','on');
         set(stopHndl,'Enable','off');
+        drawnow;
+        
         axes(bbAxes);   
+        
+    case{'stop'}  % Set stop flag. Ends running status.
+        done = 1;
 
-    case{'manual'}
-
-        % Set the beam angle manually
+    case{'manual'}   % Get the beam angle from the manual slider
 
         u = get(manualHndl,'Value');
         set(beamHndl, ...
@@ -430,10 +428,7 @@ function ballbeam(action)
             'Xdata',cos(u)*(xsp + xmarker) - sin(u)*ymarker, ...
             'Ydata',sin(u)*(xsp + xmarker) + cos(u)*ymarker);
 
-    case('setpoint')
-
-        % Get the setpoint from the setpoint slider, then
-        % adjust the setpoint marker
+    case('setpoint')  % Get the setpoint from the setpoint slider
 
         xsp = get(setpointHndl,'Value');
         set(markerHndl, ...
@@ -450,8 +445,7 @@ function ballbeam(action)
             set(legHndl,'Visible','off');
         end
 
-        % Reset the ball to the middle of the beam, and level the
-        % beam.
+        % Reset the ball to the middle and level the beam.
 
         x = beamlength/2;
         v = 0;
@@ -514,13 +508,29 @@ function ballbeam(action)
         Ad = Td/(Td+N*dt);
         Bd = Kp*Td*N/(Td+N*dt);
 
-    case{'info'}  % Display help file
+    case{'help'}  % Display help file
         helpwin(mfilename);
-
-    case{'stop'}  % Set stop flag. Ends running status.
-        done = 1;
-
-    otherwise     % Should never get here
+        
+    case{'close'}  % close application
+        delete(gcf); 
+        if length(tdata) > 1
+            subplot(2,1,1);
+            plot(tdata,xdata,tdata,xspdata,'Linewidth',2);
+            ylim([xmin,xmax]);
+            xlabel('Time [sec]');
+            ylabel('Beam Position [cm]');
+            title('Controlled Variable and Setpoint');
+            legend('Ball Position','Setpoint','Location','Northwest');
+            
+            subplot(2,1,2);
+            plot(tdata,udata,'Linewidth',2);
+            ylim([-0.25,0.25]);
+            xlabel('Time [sec]');
+            ylabel('Beam Angle [rad]');
+            title('Manipulated Variable')
+        end
+        
+    otherwise
         disp('Unknown action');
         
     end

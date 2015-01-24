@@ -22,22 +22,6 @@ The demo starts up in manual mode. The vertical slider moves the end of the beam
 
 1. Exercise: Move the setpoint to a new place, press `Run`, and manipulate the beam position to settle the ball over the new setpoint.
 
-### Plotting Simulation Data
-
-Simulation data is stored in a file |ballbeam.mat| after each run. The data can be loaded and plotted as follows:
-
-    load ballbeam
-    clf
-    subplot(211);
-    plot(tdata,xdata,'b',tdata,xspdata,'r');
-    legend('Ball Position','Setpoint','Location','NW');
-    xlabel('Time (Sec.)');
-    subplot(212);
-    plot(tdata,udata);
-    legend('Beam Position','Location','NW');
-    xlabel('Time (Sec.)');
-
-
 ## Dynamics
  
  (http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/Dynamics.ipynb)
