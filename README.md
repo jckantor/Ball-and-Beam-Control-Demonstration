@@ -5,11 +5,9 @@ Ball and Beam Control Demonstration
 
 <img align="center" src="https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.png" alt="Ball and Beam Screenshot" title="Ball and Beam"/ width="320"  >
 
-## Operation
-
 ### Installation
 
-The demonstration is contained in a single Matlab file `ballbeam.m`. 
+The demonstration is completely self-contained in a single Matlab function `ballbeam.m`. Download the Matlab file by clicking on this [link](https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.m) and saving to your usual Matlab working director.
 
 The `ballbeam.m` file is a function that can be run with no arguments. Start the demo by entering `ballbeam` at the Matlab command prompt.
 
