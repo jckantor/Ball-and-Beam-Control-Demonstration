@@ -1,16 +1,15 @@
 function ballbeam(action)
 
-% BALLBEAM demonsrates Proportional-Derivative (PD) control as applied to a
-% ball and beam demonstration experiment. Execute by calling with no
-% arguments.
+% BALLBEAM demonsrates Proportional (P) and Proportional-Derivative (PD)
+% control for a ball and beam demonstration experiment. Run by calling with
+% no arguments.
 %
 % P and PD controllers are implemented which manipulates the beam angle in
 % response to the position of the ball on the beam. The setpoint is
-% indicated by the red marker, and is adjusted using the slider at the
-% bottom of the figure. The control gain, Kp, and the Derivative Time
-% constant, Td, are adjusted by a sliders located in the right hand control
-% panel.
-%
+% indicated by a red marker and adjusted using the slider at the bottom of
+% the figure. The control gain, Kp, and the derivative time constant, Td,
+% are adjusted by sliders located in the right hand control panel.
+
 % This demo has been tested on Matlab 5.3 and Matlab 6.0. Some of the user
 % interface code was shamelessly ripped out of the standard Matlab demos.
 
