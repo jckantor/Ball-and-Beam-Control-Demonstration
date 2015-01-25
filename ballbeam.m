@@ -518,7 +518,6 @@ function ballbeam(action)
     case{'close'}  % close application
         delete(gcf); 
         if length(tdata) > 1
-            
             load ballbeam
             
             figure;
@@ -535,7 +534,14 @@ function ballbeam(action)
             ylim([-0.25,0.25]);
             xlabel('Time [sec]');
             ylabel('Beam Angle [rad]');
-            title('Manipulated Variable')
+            if mode == 1
+                title('Manipulated Variable');
+            elseif mode == 2
+                title(sprintf('Last Value of Kp = %5.2f', Kp));
+            else
+                title(sprintf('Last Value of Kp = %5.2f, Td = %5.2f', Kp, Td));
+            end
+            
         end
         
     otherwise
