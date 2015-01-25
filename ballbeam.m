@@ -37,6 +37,7 @@ function ballbeam(action)
     persistent bbAxes plotAxes plotHndl legHndl tdata udata xdata xspdata
 
     switch lower(action)
+        
     case {'initialize'}
 
         % Basic dimensions.
@@ -257,7 +258,7 @@ function ballbeam(action)
             'Units','normalized', ...
             'Position',[xPos 0.16 btnWid btnHt], ...
             'String','Help', ...
-            'Callback','ballbeam(''info'')');
+            'Callback', 'bbhelp');
 
         %====================================
         % The CLOSE button
@@ -410,7 +411,10 @@ function ballbeam(action)
         set(stopHndl,'Enable','off');
         drawnow;
         
-        axes(bbAxes);   
+        axes(bbAxes); 
+        
+        % Write data to file
+        save ballbeam tdata xdata xspdata udata Kp Td
         
     case{'stop'}  % Set stop flag. Ends running status.
         done = 1;
@@ -508,12 +512,16 @@ function ballbeam(action)
         Ad = Td/(Td+N*dt);
         Bd = Kp*Td*N/(Td+N*dt);
 
-    case{'help'}  % Display help file
+    case{'help'}  
         helpwin(mfilename);
         
     case{'close'}  % close application
         delete(gcf); 
         if length(tdata) > 1
+            
+            load ballbeam
+            
+            figure;
             subplot(2,1,1);
             plot(tdata,xdata,tdata,xspdata,'Linewidth',2);
             ylim([xmin,xmax]);

@@ -7,16 +7,19 @@ Ball and Beam Control Demonstration
 
 ### Installation
 
-The demonstration is completely self-contained in a single Matlab function `ballbeam.m`. Download the Matlab file by clicking on this [link](https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.m) and saving to your usual Matlab working director.
+The demonstration is completely self-contained in a single Matlab function. Download the file by clicking on this [link](https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.m) and saving to your Matlab directory with the name `ballbeam.m`.  
 
-The `ballbeam.m` file is a function that can be run with no arguments. Start the demo by entering `ballbeam` at the Matlab command prompt.
-
+Alternatively, you can download the whole project as a `.zip` file from [github](http://jckantor.github.io/Ball-and-Beam-Control-Demonstration/) or [Matlab Central](http://www.mathworks.com/matlabcentral/fileexchange/151-ball---beam-demo). Unpack and place the resulting folder in your Matlab directory. 
 
 ### User Interaction
 
-The demo starts up in manual mode. The vertical slider moves the end of the beam up and down. The bottom slider adjusts the setpoint indicated by the red marker. Push the `Run` button to start the simulation. The ball will roll back and forth on the beam as you move the beam position up and down. The simulation is stopped by pushing the |Stop| button or when the ball rolls off either end of the beam. A summary of the simulation results is shown in the plot.
+The `ballbeam.m` file is a function that can be run with no arguments. Start the demo by entering `ballbeam` at the Matlab command prompt.
 
-1. Exercise: Move the setpoint to a new place, press `Run`, and manipulate the beam position to settle the ball over the new setpoint.
+    ballbeam
+
+The demo starts up in manual mode. The vertical slider moves the end of the beam up and down. The bottom slider adjusts the setpoint indicated by the red marker. Push the `Run` button to start the simulation. The ball will roll back and forth on the beam as you move the beam position up and down. The simulation is stopped by pushing the |Stop| button or when the ball rolls off either end of the beam.
+
+A summary of the simulation results is shown in a figure window when the application is closed.
 
 ## Dynamics
  
