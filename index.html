@@ -46,17 +46,17 @@
 
 <p><img align="center" src="https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.png" alt="Ball and Beam Screenshot" title="Ball and Beam" width="320"></p>
 
-<h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>The demonstration is self-contained in a single Matlab function. Download it by clicking on this <a href="https://raw.githubusercontent.com/jckantor/Ball-and-Beam-Control-Demonstration/master/ballbeam.m">link</a> and saving to your Matlab directory with the name <code>ballbeam.m</code>.  </p>
 
-<p>Alternatively, you can download the whole project as a <code>.zip</code> file from <a href="http://jckantor.github.io/Ball-and-Beam-Control-Demonstration/">github</a> or <a href="http://www.mathworks.com/matlabcentral/fileexchange/151-ball---beam-demo">Matlab Central</a>. Unpack and place the resulting folder in your Matlab directory. </p>
+<p>Alternatively, you can download the whole project as a .zip file from <a href="http://jckantor.github.io/Ball-and-Beam-Control-Demonstration/">github</a> or <a href="http://www.mathworks.com/matlabcentral/fileexchange/151-ball---beam-demo">Matlab Central</a>. Unpack and place the resulting folder in your Matlab directory. </p>
 
-<h3>
-<a id="user-interaction" class="anchor" href="#user-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Interaction</h3>
+<h2>
+<a id="user-interaction" class="anchor" href="#user-interaction" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Interaction</h2>
 
-<p>The <code>ballbeam.m</code> file is a function run with no arguments. Start the demo by entering <code>ballbeam</code> at the Matlab command prompt.</p>
+<p>Start the demo by entering <code>ballbeam</code> at the Matlab command prompt with no arguments:</p>
 
 <pre><code>ballbeam
 </code></pre>
@@ -65,11 +65,11 @@
 
 <p>Push the <code>Run</code> button to start the simulation. The ball will roll back and forth on the beam as you move the end of the beam up and down. The simulation is stopped by pushing the <code>Stop</code> button or when the ball rolls off either end of the beam.</p>
 
-<p>Control of the beam can be placed in automatic proportial or proportional-derivative at any time during the simulation. Selecting these modes brings up sliders to adjust the proportional gain and derivative time constant. By altering these values, the user can explore a wide range of behaviors in response to setpoint changes and disturbances introduced manually.</p>
+<p>Control of the beam can be placed in automatic proportial or proportional-derivative at any time during the simulation. Selecting these modes brings up sliders to adjust the proportional gain and derivative time constant. By altering the control parameters, the user can explore a wide range of behaviors in response to setpoint changes and disturbances.</p>
 
 <p>The simulation window can be restarted by clicking the <code>Stop</code> button followed by <code>Reset</code>.</p>
 
-<p>Upon closing the window, a new figure window appears showing a summary of the simulation. Detailed values of position, beam angle, setpoint, and control parameters are retrieved by loading <code>ballbeam.mat</code> using the load command</p>
+<p>Upon closing the window, a new figure window appears showing a summary of the simulation. Detailed values of position, beam angle, setpoint, and control parameters are retrieved from <code>ballbeam.mat</code> using the command</p>
 
 <pre><code>load ballbeam
 </code></pre>
@@ -95,7 +95,7 @@ title(sprintf('Final Kp = %5.2f, Td = %5.2f', Kp, Td))
 <h2>
 <a id="theory" class="anchor" href="#theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theory</h2>
 
-<p>An introduction to the analysis of the closed-loop ball beam system in an <a href="http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/theory.ipynb">accompanying notebook</a>:</p>
+<p>An introduction to the analysis of the closed-loop ball beam system in an accompanying notebook:</p>
 
 <ul>
 <li><a href="http://nbviewer.ipython.org/github/jckantor/Ball-and-Beam-Control-Demonstration/blob/master/theory.ipynb">Analysis of the Ball and Beam System</a></li>
