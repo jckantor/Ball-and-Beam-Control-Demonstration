@@ -5,3 +5,6 @@ notebooks/.ipynb_checkpoints/
 *.aux
 *.log
 *.m~
+
+ballbeam_app.m
+
