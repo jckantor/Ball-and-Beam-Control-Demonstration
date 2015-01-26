@@ -1,9 +1,9 @@
 function ballbeam(action)
 
-% BALLBEAM in an interactive Proportional (P) and Proportional-Derivative
-% (PD) control for a ball and beam demonstration experiment. Start it up by
-% entering 'ballbeam' at the command line with no arguments.
-%
+% BALLBEAM in an interactive demonstration of Proportional (P) and
+% Proportional-Derivative (PD) control for a ball and beam experiment.
+% Start it by entering 'ballbeam' at the command line with no arguments.
+
 % P and PD controller manipulate the beam angle in response to the position
 % of the ball on the beam. The setpoint is indicated by a red marker and
 % adjusted using the slider at the bottom of the figure. The control gain,
